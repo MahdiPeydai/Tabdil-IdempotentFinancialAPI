@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     "rest_framework",
+    "drf_spectacular",
 
     "apps.payments",
 ]
@@ -102,5 +103,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # DRF settings
 REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "EXCEPTION_HANDLER": "common.errors.handlers.custom_exception_handler",
+    "DEFAULT_AUTHENTICATION_CLASSES": [],
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Idempotent Financial API",
+    "DESCRIPTION": "A financial API demonstrating idempotent payment creation.",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
 }
