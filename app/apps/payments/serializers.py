@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from apps.payments.models import Payment
+from common.responses.responses import SuccessResponseSerializer
 
 
 class PaymentCreateSerializer(serializers.Serializer):
@@ -42,3 +43,7 @@ class PaymentResponseSerializer(serializers.ModelSerializer):
             "created_at",
         ]
         read_only_fields = fields
+
+
+class PaymentSuccessResponseSerializer(SuccessResponseSerializer):
+    result = PaymentResponseSerializer()

@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    "rest_framework",
+
     "apps.payments",
 ]
 
@@ -95,3 +98,9 @@ USE_I18N = True
 USE_TZ = True
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# DRF settings
+REST_FRAMEWORK = {
+    "EXCEPTION_HANDLER": "common.errors.handlers.custom_exception_handler",
+}
