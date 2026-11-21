@@ -1,0 +1,19 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: idempotent-api
+
+    command: python manage.py runserver 0.0.0.0:8000
+
+    ports:
+      - "8083:8000"
+
+    volumes:
+      - ./app:/app
+      - ./data:/data
+
+    env_file:
+      - .env
