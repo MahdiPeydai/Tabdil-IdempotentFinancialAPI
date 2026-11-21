@@ -114,3 +114,43 @@ SPECTACULAR_SETTINGS = {
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
 }
+
+
+# Log
+LOG_DIR = BASE_DIR / "../logs"
+LOG_DIR.mkdir(parents=True, exist_ok=True)
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+
+    "formatters": {
+        "payment": {
+            "format": (
+                "%(asctime)s | %(levelname)s | "
+                "%(name)s | %(message)s"
+            ),
+            "datefmt": "%Y-%m-%d %H:%M:%S",
+        },
+    },
+
+    "handlers": {
+        "payment_file": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": LOG_DIR / "payments.log",
+            "maxBytes": 5 * 1024 * 1024,
+            "backupCount": 5,
+            "formatter": "payment",
+            "encoding": "utf-8",
+            "level": "INFO",
+        },
+    },
+
+    "loggers": {
+        "payments.service": {
+            "handlers": ["payment_file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+    },
+}
